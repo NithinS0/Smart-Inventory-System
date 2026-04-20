@@ -39,6 +39,4 @@ A modern, scalable QR-based inventory and spare management solution built with R
 *   **Inventory Module**: 🟦 Blue-themed premium layout.
 *   **Spare Module**: 🟧 Orange-themed premium layout.
 *   **Aesthetics**: Glassmorphism cards, Outfit typography, and Outfit icons.
-
 ---
-Built by Antigravity
