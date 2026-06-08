@@ -24,9 +24,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     { label: 'Dashboard', icon: <LayoutDashboard size={18} />, path: '/' },
     { label: 'Asset Catalog', icon: <Package size={18} />, path: '/items' },
     { label: 'Live QR Scanner', icon: <Scan size={18} />, path: '/scan' },
-    { label: 'Personnel Domain', icon: <Users size={18} />, path: '/personnel', adminOnly: true },
-    { label: 'Operations & Remarks', icon: <Bell size={18} />, path: '/remarks' },
-    { label: 'Audit & Reports', icon: <FileBarChart size={18} />, path: '/reports', adminOnly: true },
+    { label: 'Personnel Hub', icon: <Users size={18} />, path: '/personnel', adminOnly: true },
+    { label: 'Remarks Hub', icon: <Bell size={18} />, path: '/remarks' },
+    { label: 'Reports & Analytics', icon: <FileBarChart size={18} />, path: '/reports', adminOnly: true },
     { label: 'Settings', icon: <Settings size={18} />, path: '/settings' },
   ].filter(item => !item.adminOnly || user?.role === 'admin')
 
@@ -192,7 +192,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             fontWeight: 700
           }}
         >
-          <LogOut size={16} /> Secure Exit
+          <LogOut size={16} /> Sign Out
         </button>
       </div>
 

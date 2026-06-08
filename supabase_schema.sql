@@ -74,7 +74,7 @@ DECLARE
   max_id TEXT;
   numeric_part INTEGER;
 BEGIN
-  SELECT id INTO max_id FROM public.inventory_items ORDER BY id DESC LIMIT 1;
+  SELECT id INTO max_id FROM public.inventory_items ORDER BY CAST(SUBSTRING(id FROM 3) AS INTEGER) DESC LIMIT 1;
   IF max_id IS NULL THEN new_id := 'IM0001';
   ELSE
     numeric_part := CAST(SUBSTRING(max_id FROM 3) AS INTEGER) + 1;
@@ -91,7 +91,7 @@ DECLARE
   max_id TEXT;
   numeric_part INTEGER;
 BEGIN
-  SELECT id INTO max_id FROM public.spare_items ORDER BY id DESC LIMIT 1;
+  SELECT id INTO max_id FROM public.spare_items ORDER BY CAST(SUBSTRING(id FROM 3) AS INTEGER) DESC LIMIT 1;
   IF max_id IS NULL THEN new_id := 'SM0001';
   ELSE
     numeric_part := CAST(SUBSTRING(max_id FROM 3) AS INTEGER) + 1;
@@ -164,22 +164,56 @@ CREATE TRIGGER inventory_low_stock_check AFTER UPDATE OF quantity ON public.inve
 DROP TRIGGER IF EXISTS spare_low_stock_check ON public.spare_items;
 CREATE TRIGGER spare_low_stock_check AFTER UPDATE OF quantity ON public.spare_items FOR EACH ROW EXECUTE FUNCTION public.check_low_stock('spare');
 
--- 5. RLS LOGIC
+-- 5. ADMIN AUDIT LOGS TABLE
+CREATE TABLE IF NOT EXISTS public.admin_audit_logs (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  admin_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  target_user_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  action TEXT NOT NULL,
+  old_value TEXT,
+  new_value TEXT,
+  timestamp TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW())
+);
+
+-- 6. RLS LOGIC & POLICIES
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.allowed_users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.inventory_items ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.spare_items ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.activity_logs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.stock_transactions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.low_stock_alerts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.admin_audit_logs ENABLE ROW LEVEL SECURITY;
 
+-- Profiles Policies
 DROP POLICY IF EXISTS "Profiles are readable by everyone" ON public.profiles;
 CREATE POLICY "Profiles are readable by everyone" ON public.profiles FOR SELECT USING (true);
 
 DROP POLICY IF EXISTS "Users can update their own profile" ON public.profiles;
 CREATE POLICY "Users can update their own profile" ON public.profiles FOR UPDATE USING (auth.uid() = id);
 
+-- Inventory & Spares Policies
 DROP POLICY IF EXISTS "Auth access inventory" ON public.inventory_items;
 CREATE POLICY "Auth access inventory" ON public.inventory_items FOR ALL TO authenticated USING (true);
 
 DROP POLICY IF EXISTS "Auth access spares" ON public.spare_items;
 CREATE POLICY "Auth access spares" ON public.spare_items FOR ALL TO authenticated USING (true);
+
+-- Allowed Users Policies
+DROP POLICY IF EXISTS "Auth access allowed_users" ON public.allowed_users;
+CREATE POLICY "Auth access allowed_users" ON public.allowed_users FOR ALL TO authenticated USING (true);
+
+-- Activity Logs & Transactions Policies
+DROP POLICY IF EXISTS "Auth access activity_logs" ON public.activity_logs;
+CREATE POLICY "Auth access activity_logs" ON public.activity_logs FOR ALL TO authenticated USING (true);
+
+DROP POLICY IF EXISTS "Auth access stock_transactions" ON public.stock_transactions;
+CREATE POLICY "Auth access stock_transactions" ON public.stock_transactions FOR ALL TO authenticated USING (true);
+
+-- Low Stock Alerts Policies
+DROP POLICY IF EXISTS "Auth access low_stock_alerts" ON public.low_stock_alerts;
+CREATE POLICY "Auth access low_stock_alerts" ON public.low_stock_alerts FOR ALL TO authenticated USING (true);
+
+-- Admin Audit Logs Policies
+DROP POLICY IF EXISTS "Auth access admin_audit_logs" ON public.admin_audit_logs;
+CREATE POLICY "Auth access admin_audit_logs" ON public.admin_audit_logs FOR ALL TO authenticated USING (true);

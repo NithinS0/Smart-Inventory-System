@@ -39,7 +39,13 @@ export const QRScanner: React.FC = () => {
     if (scannerRef.current) await scannerRef.current.clear();
 
     try {
-      const tableName = decodedText.startsWith('IM') ? 'inventory_items' : 'spare_items'
+      const isInventoryItem = decodedText.startsWith('IM');
+      const targetModuleOfItem = isInventoryItem ? 'inventory' : 'spare';
+      if (targetModuleOfItem !== currentModule) {
+        throw new Error(`Cross-Module Access Denied: The scanned asset (${decodedText}) belongs to the ${targetModuleOfItem} module, but your active workspace is set to ${currentModule}. Please switch modules in the header before performing actions on this item.`);
+      }
+
+      const tableName = isInventoryItem ? 'inventory_items' : 'spare_items'
       const { data, error: fetchError } = await supabase.from(tableName).select('*').eq('id', decodedText).single()
       if (fetchError) throw new Error('Asset registry ID invalid or not found.')
       setScannedItem(data)

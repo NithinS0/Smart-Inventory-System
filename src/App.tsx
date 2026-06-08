@@ -91,12 +91,12 @@ const App: React.FC = () => {
 
   const getPageTitle = () => {
     switch (location.pathname) {
-      case '/': return 'Global Dashboard'
-      case '/items': return 'Asset Registry'
-      case '/personnel': return 'Personnel Intelligence Domain'
-      case '/reports': return 'Intelligence & Analytics'
-      case '/settings': return 'Personnel Settings'
-      case '/scan': return 'Live QR Capture'
+      case '/': return 'Dashboard'
+      case '/items': return 'Asset Catalog'
+      case '/personnel': return 'Personnel Hub'
+      case '/reports': return 'Reports & Analytics'
+      case '/settings': return 'Profile Settings'
+      case '/scan': return 'Scan QR Code'
       default: return 'Murugappa Hub'
     }
   }

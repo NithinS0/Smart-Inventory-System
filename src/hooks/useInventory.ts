@@ -110,10 +110,15 @@ export const useInventory = () => {
       const { error: delErr } = await supabase.from(tableName).delete().eq('id', id)
       if (delErr) throw delErr
 
-      // Log activity
-      await supabase.from('activity_logs').insert([
-        { user_id: user.id, action: 'delete', item_id: id, module: currentModule }
-      ])
+      // Log activity in stock transactions
+      await supabase.from('stock_transactions').insert([{
+        item_id: id,
+        module: currentModule,
+        action: 'delete',
+        quantity: 0,
+        user_id: user.id,
+        remarks: 'Asset registry termination'
+      }])
 
       fetchItems()
     } catch (err: any) {
