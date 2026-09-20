@@ -328,7 +328,7 @@ export const PersonnelHub: React.FC = () => {
                 <div style={{ marginBottom: '1.5rem' }}>
                   <label className="input-label">Personnel Corporate Email</label>
                   <input 
-                    type="email" required className="input-field" placeholder="employee@murugappa.com" 
+                    type="email" required className="input-field" placeholder="employee@company.com" 
                     value={newWhitelistedEmail} onChange={e => setNewWhitelistedEmail(e.target.value)}
                   />
                 </div>

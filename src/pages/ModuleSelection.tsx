@@ -1,5 +1,5 @@
 import React from 'react'
-import { Package, Recycle, ArrowRight } from 'lucide-react'
+import { Package, Recycle, ArrowRight, Boxes } from 'lucide-react'
 import { useAppStore, Module } from '../store/useAppStore'
 
 export const ModuleSelection: React.FC = () => {
@@ -27,32 +27,19 @@ export const ModuleSelection: React.FC = () => {
         padding: '2rem'
       }}
     >
-      {/* 🔥 Header Section */}
-      <div style={{ textAlign: 'center', maxWidth: 640, marginBottom: '4rem' }}>
+      {/* Platform Header */}
+      <div style={{ textAlign: 'center', maxWidth: 640, marginBottom: '3.5rem' }}>
 
-        {/* ✅ FIXED LOGO */}
-        <div
-          style={{
-            width: 300,
-            height: 160,
-            borderRadius: '20px',
-            background: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 2.5rem',
-            boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)',
-            border: '1px solid #e2e8f0',
-            padding: '0.2rem'
-          }}
-        >
+        {/* Brand Logo */}
+        <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
           <img
-            src="/murugappa_logo.png"
-            alt="Murugappa"
+            src="/logo.png"
+            alt="Smart Invento System Logo"
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain'
+              width: 96,
+              height: 96,
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 12px 24px rgba(37, 99, 235, 0.25))'
             }}
           />
         </div>
@@ -60,22 +47,23 @@ export const ModuleSelection: React.FC = () => {
         {/* Title */}
         <h1
           style={{
-            fontSize: '2.5rem',
+            fontSize: '2.25rem',
             fontWeight: 900,
-            marginBottom: '1rem',
+            marginBottom: '0.75rem',
             color: '#0f172a',
             letterSpacing: '-0.02em'
           }}
         >
-          Murugappa Asset Hub
+          Smart Invento Asset Hub
         </h1>
 
         {/* Subtitle */}
         <p
           style={{
             color: '#64748b',
-            fontSize: '1.125rem',
-            fontWeight: 500
+            fontSize: '1.05rem',
+            fontWeight: 500,
+            lineHeight: 1.5
           }}
         >
           Welcome authorized personnel. Please select a specialized inventory workspace to begin your session.
@@ -200,7 +188,7 @@ export const ModuleSelection: React.FC = () => {
           letterSpacing: '0.1em'
         }}
       >
-        Murugappa Enterprise Security • Authorized Personnel Only
+        Enterprise Security • Authorized Personnel Only
       </p>
     </div>
   )

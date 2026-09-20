@@ -118,7 +118,7 @@ BEGIN
   VALUES (
     new.id, 
     new.email, 
-    COALESCE(new.raw_user_meta_data->>'name', COALESCE(new.raw_user_meta_data->>'full_name', 'Murugappa Personnel')),
+    COALESCE(new.raw_user_meta_data->>'name', COALESCE(new.raw_user_meta_data->>'full_name', 'Invento Personnel')),
     COALESCE(new.raw_user_meta_data->>'employee_id', 'MUR-NEW'), -- Intercepted by App.tsx logic for profile completion
     new.raw_user_meta_data->>'preferred_module',
     assigned_role

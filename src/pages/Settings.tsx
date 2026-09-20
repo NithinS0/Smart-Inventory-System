@@ -173,7 +173,7 @@ export const Settings: React.FC = () => {
                    ) : (
                       <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
                          You are currently utilizing a <strong>Standard System Password</strong>. Password rotation and specialized 
-                         2FA protocols are enforced by the Murugappa Smart Registry Security Engine.
+                         2FA protocols are enforced by the Enterprise Smart Registry Security Engine.
                       </p>
                    )}
                 </div>

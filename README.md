@@ -1,4 +1,4 @@
-# Murugappa Smart Inventory System
+# Smart Invento System
 
 An inventory and spare parts tracking solution developed as an internship project for company use. Built with React, TypeScript, and Supabase.
 

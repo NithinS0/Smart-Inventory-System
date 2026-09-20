@@ -107,18 +107,20 @@ export const Login: React.FC = () => {
           text-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        .branding-logo-box {
-          width: 340px;              
-          height: 160px;
-          background: white;
-          border-radius: 28px;
+        .branding-icon-badge {
+          width: 80px;              
+          height: 80px;
+          background: rgba(255, 255, 255, 0.18);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-radius: 22px;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 0 auto 2.5rem;
+          margin: 0 auto 2rem;
           box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25);
-          border: 1px solid rgba(255, 255, 255, 0.4);
-          padding: 1rem;
+          border: 1px solid rgba(255, 255, 255, 0.35);
+          color: white;
         }
 
         .branding-title {
@@ -132,9 +134,10 @@ export const Login: React.FC = () => {
         .branding-tagline {
           font-size: 1.125rem;
           font-weight: 500;
-          opacity: 0.8;
-          max-width: 400px;
+          opacity: 0.9;
+          max-width: 420px;
           margin: 0 auto;
+          line-height: 1.5;
         }
 
         .login-section {
@@ -204,11 +207,22 @@ export const Login: React.FC = () => {
       {/* LEFT SIDE - BRANDING */}
       <div className="branding-section">
         <img src="/inventory_illustration.png" alt="Illustration" className="branding-illustration" />
-        <div className="branding-logo-box">
-          <img src="/murugappa_logo.png" alt="Murugappa" style={{ width: '100%', height: '120%', objectFit: 'contain' }} />
+        <div className="branding-content">
+          <div style={{ marginBottom: '1.75rem', display: 'flex', justifyContent: 'center' }}>
+            <img
+              src="/logo.png"
+              alt="Smart Invento System Logo"
+              style={{
+                width: 120,
+                height: 120,
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 20px 35px rgba(0,0,0,0.3))'
+              }}
+            />
+          </div>
+          <h1 className="branding-title">Smart Invento System</h1>
+          <p className="branding-tagline">Enterprise Asset & Spare Parts Intelligence Management.</p>
         </div>
-        <h1 className="branding-title">Murugappa Smart Inventory</h1>
-        <p className="branding-tagline">Smart Inventory & Spare Parts Management.</p>
       </div>
 
       {/* RIGHT SIDE - LOGIN/REGISTER */}
@@ -274,7 +288,7 @@ export const Login: React.FC = () => {
               <label style={{ fontSize: '0.65rem', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'block' }}>Email Address</label>
               <div style={{ position: 'relative' }}>
                 <Mail size={16} style={{ position: 'absolute', left: 12, top: 12, color: '#94a3b8' }} />
-                <input type="email" className="input-field" placeholder="email@murugappa.com" value={email} onChange={e => setEmail(e.target.value)} style={{ paddingLeft: '2.5rem' }} required />
+                <input type="email" className="input-field" placeholder="employee@company.com" value={email} onChange={e => setEmail(e.target.value)} style={{ paddingLeft: '2.5rem' }} required />
               </div>
             </div>
 

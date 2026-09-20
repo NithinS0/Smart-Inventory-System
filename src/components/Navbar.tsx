@@ -23,8 +23,11 @@ export const Navbar: React.FC = () => {
       zIndex: 100
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-        <div style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--primary)' }}>
-          MURUGAPPA <span style={{ fontWeight: 300, color: 'var(--text-main)' }}>SMART</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <img src="/logo.png" alt="Smart Invento" style={{ width: 28, height: 28, objectFit: 'contain' }} />
+          <div style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--primary)' }}>
+            SMART <span style={{ fontWeight: 300, color: 'var(--text-main)' }}>INVENTO</span>
+          </div>
         </div>
         
         {currentModule && (

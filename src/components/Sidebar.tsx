@@ -49,12 +49,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       {/* 🔥 Top Section (Updated UI) */}
       <div
         style={{
-          padding: '1.5rem 1rem',
+          padding: '1.25rem 1.25rem',
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          gap: '0.75rem',
-          borderBottom: '1px solid var(--border-color)'
+          gap: '0.875rem',
+          borderBottom: '1px solid var(--border-color)',
+          position: 'relative'
         }}
       >
         {/* Mobile Close Button */}
@@ -62,8 +62,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           onClick={onClose}
           style={{
             position: 'absolute',
-            top: '1rem',
-            right: '1rem',
+            top: '0.75rem',
+            right: '0.75rem',
             border: 'none',
             background: 'transparent',
             color: 'var(--text-muted)',
@@ -76,55 +76,42 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           <X size={20} />
         </button>
 
-        {/* Logo */}
-        <div
+        {/* Brand Logo */}
+        <img
+          src="/logo.png"
+          alt="Smart Invento System"
           style={{
-            width: 180,
-            height: 100,
-            borderRadius: '12px',
-            background: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-            padding: '0.2rem',
-            border: '1px solid var(--border-color)'
+            width: 44,
+            height: 44,
+            objectFit: 'contain',
+            filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.08))',
+            flexShrink: 0
           }}
-        >
-          <img
-            src="/murugappa_logo.png"
-            alt="Murugappa"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain'
-            }}
-          />
-        </div>
+        />
 
-        {/* Text */}
-        <div style={{ textAlign: 'center' }}>
+        {/* Brand Title & Module */}
+        <div style={{ overflow: 'hidden' }}>
           <h2
             style={{
-              fontSize: '1.2rem',
-              fontWeight: 900,
+              fontSize: '1.05rem',
+              fontWeight: 800,
               color: 'var(--text-main)',
               letterSpacing: '-0.02em',
-              textTransform: 'uppercase',
-              margin: 0
+              margin: 0,
+              lineHeight: 1.2
             }}
           >
-            Murugappa
+            Smart Invento
           </h2>
 
           <p
             style={{
               fontSize: '0.7rem',
-              fontWeight: 800,
-              color: 'var(--text-muted)',
+              fontWeight: 700,
+              color: 'var(--primary)',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
-              marginTop: '0.2rem'
+              margin: '0.2rem 0 0 0'
             }}
           >
             {currentModule} Hub

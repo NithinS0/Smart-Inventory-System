@@ -97,7 +97,7 @@ const App: React.FC = () => {
       case '/reports': return 'Reports & Analytics'
       case '/settings': return 'Profile Settings'
       case '/scan': return 'Scan QR Code'
-      default: return 'Murugappa Hub'
+      default: return 'Smart Invento Hub'
     }
   }
 

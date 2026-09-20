@@ -39,10 +39,25 @@
   --primary-dark: #c2410c;
 }
 
-* {
+/* Global Reset & Caret Removal */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  caret-color: transparent !important;
+}
+
+html, body {
+  cursor: default;
+}
+
+input, textarea, [contenteditable="true"] {
+  caret-color: transparent !important;
+  cursor: default;
+}
+
+button, a, select, [role="button"], input[type="submit"], input[type="button"], input[type="checkbox"], input[type="radio"] {
+  cursor: pointer;
 }
 
 body {
